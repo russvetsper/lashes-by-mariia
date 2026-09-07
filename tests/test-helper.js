@@ -1,6 +1,6 @@
 import '@warp-drive/ember/install';
-import Application from 'lashes-by-mriia/app';
-import config from 'lashes-by-mriia/config/environment';
+import Application from 'lashes-by-mariia/app';
+import config from 'lashes-by-mariia/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';

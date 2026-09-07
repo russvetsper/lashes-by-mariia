@@ -16,3 +16,22 @@
 
 # broccoli-debug
 /DEBUG/
+.vercel
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# backup files
+*.save
+
+# environment / secrets
+.env
+.env.*
+!.env.example
+
+# VS Code
+.vscode/
+
+# Supabase local temp files
+supabase/.temp/

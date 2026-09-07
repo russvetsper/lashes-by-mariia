@@ -1,8 +1,8 @@
 {
-  "name": "lashes-by-mriia",
+  "name": "lashes-by-mariia",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for lashes-by-mriia goes here",
+  "description": "Small description for lashes-by-mariia goes here",
   "repository": "",
   "license": "MIT",
   "author": "",
@@ -88,5 +88,8 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.115.0"
   }
 }

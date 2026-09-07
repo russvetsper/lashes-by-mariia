@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   const ENV = {
-    modulePrefix: 'lashes-by-mriia',
+    modulePrefix: 'lashes-by-mariia',
     environment,
     rootURL: '/',
     locationType: 'history',

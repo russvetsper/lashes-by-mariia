@@ -12,6 +12,7 @@
  *     npx eslint --inspect-config
  *
  */
+
 import globals from 'globals';
 import js from '@eslint/js';
 import { defineConfig, globalIgnores } from 'eslint/config';
@@ -31,25 +32,39 @@ const esmParserOptions = {
 
 export default defineConfig([
   globalIgnores(['dist/', 'coverage/', '!**/.*']),
+
   js.configs.recommended,
+
   eslintConfigPrettier,
+
   ember.configs.base,
+
   ember.configs.gjs,
+
   ...WarpDrive,
+
   /**
-   * https://eslint.org/docs/latest/use/configure/configuration-files#configuring-linter-options
+   * ESLint linter options
    */
   {
     linterOptions: {
       reportUnusedDisableDirectives: 'error',
     },
   },
+
+  /**
+   * JavaScript files
+   */
   {
     files: ['**/*.js'],
     languageOptions: {
       parser: babelParser,
     },
   },
+
+  /**
+   * JavaScript and Glimmer files
+   */
   {
     files: ['**/*.{js,gjs}'],
     languageOptions: {
@@ -59,6 +74,10 @@ export default defineConfig([
       },
     },
   },
+
+  /**
+   * QUnit tests
+   */
   {
     ...qunit.configs.recommended,
     files: ['tests/**/*-test.{js,gjs}'],
@@ -66,8 +85,9 @@ export default defineConfig([
       qunit,
     },
   },
+
   /**
-   * CJS node files
+   * CJS Node files
    */
   {
     ...n.configs['flat/recommended-script'],
@@ -75,7 +95,6 @@ export default defineConfig([
     plugins: {
       n,
     },
-
     languageOptions: {
       sourceType: 'script',
       ecmaVersion: 'latest',
@@ -84,8 +103,29 @@ export default defineConfig([
       },
     },
   },
+
   /**
-   * ESM node files
+   * Supabase Edge Functions
+   *
+   * These files run in Deno, not Ember/Warp Drive.
+   */
+  {
+    files: ['supabase/functions/**/*.ts'],
+    rules: {
+      'warp-drive/no-external-request-patterns': 'off',
+    },
+    languageOptions: {
+      sourceType: 'module',
+      ecmaVersion: 'latest',
+      globals: {
+        ...globals.browser,
+        Deno: 'readonly',
+      },
+    },
+  },
+
+  /**
+   * ESM Node files
    */
   {
     ...n.configs['flat/recommended-module'],
@@ -93,7 +133,6 @@ export default defineConfig([
     plugins: {
       n,
     },
-
     languageOptions: {
       sourceType: 'module',
       ecmaVersion: 'latest',
